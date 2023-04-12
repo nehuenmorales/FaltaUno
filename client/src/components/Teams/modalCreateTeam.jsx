@@ -146,7 +146,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     e.preventDefault();
     // dispatch(createTeam(input));para el futuro 
     let respuesta;
-    await axios.post(`https://falta-uno-1.herokuapp.com/team/createTeam`, input)
+    await axios.post(`http://localhost:3001/team/createTeam`, input)
       .then((res) => {
         respuesta = res.data
       })
@@ -184,7 +184,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   //---------------------- INVITACIONES A PLAYERS -------------------------
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    axios.get("https://falta-uno-1.herokuapp.com/player/getPlayers").then((resp) => {
+    axios.get("http://localhost:3001/player/getPlayers").then((resp) => {
       setPlayers(resp.data);
     });
   }, []);

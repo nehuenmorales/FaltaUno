@@ -33,7 +33,7 @@ export default function SuppliesTenis() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get("https://falta-uno-1.herokuapp.com/owner/getNameComplex").then((res) => {
+    axios.get("http://localhost:3001/owner/getNameComplex").then((res) => {
       setComplexName(res.data);
     });
   }, []);
@@ -103,16 +103,16 @@ export default function SuppliesTenis() {
     data.append("file", file);
     data.append("upload_preset", 'sdujndiw');
     setLoading(true);
-    const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
-        { method: "POST", body: data })
+    const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
+      { method: "POST", body: data })
     const data1 = await response.json()
     setNewSupplie({
       ...newSupplie,
       image: data1.url,
-  });
-  let errors = validator({ ...newSupplie, image: file });
-  setErrors(errors);
-  setLoading(false)
+    });
+    let errors = validator({ ...newSupplie, image: file });
+    setErrors(errors);
+    setLoading(false)
   };
 
   return (
@@ -200,10 +200,10 @@ export default function SuppliesTenis() {
         </div>
         <div className={s.boton}>
           {!loading &&
-          !errors.complexId &&
-          !errors.name &&
-          !errors.stock &&
-          !errors.price ? (
+            !errors.complexId &&
+            !errors.name &&
+            !errors.stock &&
+            !errors.price ? (
             <button className={s.btnVerde} type="submit">
               Siguiente
             </button>

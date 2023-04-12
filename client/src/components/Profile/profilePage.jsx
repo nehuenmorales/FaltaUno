@@ -72,7 +72,7 @@ export default function ProfileData({ email, user }) {
       username: player?.username,
       city: player?.city,
     });
-    axios.get("https://falta-uno-1.herokuapp.com/complex/getCities").then((resp) => {
+    axios.get("http://localhost:3001/complex/getCities").then((resp) => {
       setCities(resp.data);
     });
   }, [player]);
@@ -114,8 +114,8 @@ export default function ProfileData({ email, user }) {
     validador(e);
   };
 
-  const editProfile = (value,e) => {
-    if(e){
+  const editProfile = (value, e) => {
+    if (e) {
       e.preventDefault()
     }
     if (buttonedit[value]) {
@@ -153,7 +153,7 @@ export default function ProfileData({ email, user }) {
   };
 
   const handleDelete = async () => {
-    const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
+    const del = await axios.post(`http://localhost:3001/player/delete/${player?.id}`)
     toast({
       title: 'Tu cuenta ha sido eliminada',
       status: 'error',
@@ -161,7 +161,7 @@ export default function ProfileData({ email, user }) {
       isClosable: true,
     })
     setTimeout(del, 2000)
-    if(del) logout({ returnTo: window.location.origin })
+    if (del) logout({ returnTo: window.location.origin })
   }
 
 
@@ -184,32 +184,32 @@ export default function ProfileData({ email, user }) {
             <div className={s.info}>
               {buttonedit.name ? (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Nombre:{" "}
+                    Nombre:{" "}
                   </h6>
-                  <input 
+                  <input
                     className={s.input}
                     name="name"
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.name}
                   />{" "}
-                  
+
                   <button
                     name="name"
                     onClick={(e) => editProfile("name")}
                     className={s.buttonEdit}
                   >
-                   <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-pen-to-square"></i>
                   </button>{" "}
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Nombre: {profile.name}{" "}
+                    Nombre: {profile.name}{" "}
                   </h6>
-                  
+
                   <button
                     name="name"
                     onClick={(e) => editProfile("name")}
@@ -226,15 +226,15 @@ export default function ProfileData({ email, user }) {
                 <div className={s.containerData} >
 
                   <h6>
-                  Apellido:{" "}
+                    Apellido:{" "}
                   </h6>
-                  <input 
+                  <input
                     className={s.input}
                     name="lastName"
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.lastName}
                   />{" "}
-                  
+
                   <button
                     name="lastName"
                     onClick={(e) => editProfile("lastName")}
@@ -245,11 +245,11 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Apellido: {profile.lastName}{" "}
+                    Apellido: {profile.lastName}{" "}
                   </h6>
-                 
+
                   <button
                     name="lastName"
                     onClick={(e) => editProfile("lastName")}
@@ -263,22 +263,22 @@ export default function ProfileData({ email, user }) {
               {errors.lastName ? <h5>{errors.lastName}</h5> : null}
               <div className={s.containerData}>
 
-              <h6>Email: {player.email}</h6>
+                <h6>Email: {player.email}</h6>
               </div>
 
               {buttonedit.telephone ? (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Telefono:{" "}
+                    Telefono:{" "}
                   </h6>
-                  <input 
+                  <input
                     className={s.input}
                     name="telephone"
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.telephone}
                   />{" "}
-                  
+
                   <button
                     name="telephone"
                     onClick={(e) => editProfile("telephone")}
@@ -289,11 +289,11 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Telefono: {profile.telephone}{" "}
+                    Telefono: {profile.telephone}{" "}
                   </h6>
-                 
+
                   <button
                     name="telephone"
                     onClick={(e) => editProfile("telephone")}
@@ -308,19 +308,19 @@ export default function ProfileData({ email, user }) {
 
               {buttonedit.username ? (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Nombre de usuario:{" "}
+                    Nombre de usuario:{" "}
                   </h6>
-                  
-                  <input 
+
+                  <input
                     className={s.input}
                     name="username"
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.username}
                   />{" "}
                   <button
-                  style={{backgroundColor: 'white'}}
+                    style={{ backgroundColor: 'white' }}
                     name="username"
                     onClick={(e) => editProfile("username")}
                     className={s.buttonEdit}
@@ -330,11 +330,11 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  
+
                   <h6>
-                  Nombre de usuario: {profile.username}{" "}
+                    Nombre de usuario: {profile.username}{" "}
                   </h6>
-                 
+
                   <button
                     name="username"
                     onClick={(e) => editProfile("username")}
@@ -352,19 +352,19 @@ export default function ProfileData({ email, user }) {
                   <div >
                     <form>
                       <div className={s.containerData}>
-                      <h6>
-                        Ciudad:
-                        <input 
-                          className={s.input}
-                          placeholder="Selecciona tu ciudad"
-                          aria-label="Selecciona tu ciudad"
-                          aria-autocomplete="both"
-                          aria-controls="autocomplete-results"
-                          defaultValue={profile.city}
-                          onChange={(ev) => handleChangeCity(ev)}
-                        />
-                      </h6>
-                      {/* <button
+                        <h6>
+                          Ciudad:
+                          <input
+                            className={s.input}
+                            placeholder="Selecciona tu ciudad"
+                            aria-label="Selecciona tu ciudad"
+                            aria-autocomplete="both"
+                            aria-controls="autocomplete-results"
+                            defaultValue={profile.city}
+                            onChange={(ev) => handleChangeCity(ev)}
+                          />
+                        </h6>
+                        {/* <button
                                  type='submit'
                                  aria-label='Search'
                                  >
@@ -372,13 +372,13 @@ export default function ProfileData({ email, user }) {
                                  <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
                                  </svg>
                                 </button> */}
-                      <button
-                        value="city"
-                        onClick={(e) => editProfile("city",e)}
-                        className={s.buttonEdit}
-                      >
-                        <i class="fa-solid fa-pen-to-square"></i>
-                      </button>
+                        <button
+                          value="city"
+                          onClick={(e) => editProfile("city", e)}
+                          className={s.buttonEdit}
+                        >
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                       </div>
                       <div>
                         <ul
@@ -388,17 +388,17 @@ export default function ProfileData({ email, user }) {
                         >
                           {cityInput
                             ? cityInput?.map((elem, index) => {
-                                return (
-                                  <li id={index}>
-                                    <button
-                                      onClick={(e) => onClickCity(e)}
-                                      value={elem}
-                                    >
-                                      {elem}
-                                    </button>
-                                  </li>
-                                );
-                              })
+                              return (
+                                <li id={index}>
+                                  <button
+                                    onClick={(e) => onClickCity(e)}
+                                    value={elem}
+                                  >
+                                    {elem}
+                                  </button>
+                                </li>
+                              );
+                            })
                             : null}
                           {!click ? (
                             <div>Debes seleccionar una ciudad</div>
@@ -409,15 +409,15 @@ export default function ProfileData({ email, user }) {
                   </div>
                 ) : (
                   <div className={s.containerData}>
-                  <h6>
-                    Ciudad: {profile.city}
-                  </h6>
+                    <h6>
+                      Ciudad: {profile.city}
+                    </h6>
                     <button
                       value="city"
                       onClick={(e) => editProfile("city")}
                       className={s.buttonEdit}
                     >
-                    <i class="fa-solid fa-pen-to-square"></i>
+                      <i class="fa-solid fa-pen-to-square"></i>
 
                     </button>{" "}
                   </div>
@@ -425,25 +425,25 @@ export default function ProfileData({ email, user }) {
                 // <h6>Ciudad: {profile.city} <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>
               }
               <div className={s.containerData}>
-              
+
                 <h6>Elo: {player.elo}</h6>
               </div>
 
               {flag &&
-              !errors.name &&
-              !errors.lastName &&
-              !errors.telephone &&
-              !errors.username ? (
+                !errors.name &&
+                !errors.lastName &&
+                !errors.telephone &&
+                !errors.username ? (
                 <div className={s.containerButtonFinal}>
 
-                <button className={s.buttonfinal} onClick={(e) => onSubmit(e)}>
-                  Guardar cambios al usuario
-                </button>
+                  <button className={s.buttonfinal} onClick={(e) => onSubmit(e)}>
+                    Guardar cambios al usuario
+                  </button>
                 </div>
               ) : null}
               {/* // aca voy a romper todo */}
-              <div style={{display: 'flex', width: '100%', justifiContent: 'flex-end'}}>
-              <Button style={{marginTop: '60px', marginLeft:'150px', backgroundColor:'rgb(176, 6, 18)', color:'white', width: '500px'}} onClick={onOpen}>Eliminar Cuenta</Button>
+              <div style={{ display: 'flex', width: '100%', justifiContent: 'flex-end' }}>
+                <Button style={{ marginTop: '60px', marginLeft: '150px', backgroundColor: 'rgb(176, 6, 18)', color: 'white', width: '500px' }} onClick={onOpen}>Eliminar Cuenta</Button>
               </div>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

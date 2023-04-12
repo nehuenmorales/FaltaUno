@@ -11,7 +11,7 @@ export default function SuppliesList() {
     const [supplies, setSupplies] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/owner/getSuppliesByOwner/${owner.id}`)
+        axios.get(`http://localhost:3001/owner/getSuppliesByOwner/${owner.id}`)
             .then(res => setSupplies(res.data))
     }, [])
     return (
@@ -40,14 +40,14 @@ export default function SuppliesList() {
                                                 </div>
                                             </div>
                                             <div className="etiqueta">
-                                                <div className="div-rating" style={{display:'flex', alignItems: 'center', paddingBottom:'15px'}}>
+                                                <div className="div-rating" style={{ display: 'flex', alignItems: 'center', paddingBottom: '15px' }}>
 
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/74/74742.png" alt="" className="rating-img" style={{ height: "15px", marginTop: "3px", filter: 'invert(100%)'  }} />
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/74/74742.png" alt="" className="rating-img" style={{ height: "15px", marginTop: "3px", filter: 'invert(100%)' }} />
                                                     <p className="complex-rating"> {e.price}</p>
                                                 </div>
                                                 <div>
                                                     {e.sport === 'futbol' ?
-                                                        <img src="https://cdn-icons-png.flaticon.com/512/3231/3231063.png" alt="" style={{ height: '25px', filter: 'invert(100%)'  }} className="sport-icon" />
+                                                        <img src="https://cdn-icons-png.flaticon.com/512/3231/3231063.png" alt="" style={{ height: '25px', filter: 'invert(100%)' }} className="sport-icon" />
                                                         : e.sport === 'tenis' ?
                                                             <img src="https://api.iconify.design/twemoji:tennis.svg?color=%23000000" alt="" style={{ height: '25px' }} className="sport-icon" />
                                                             : e.sport === 'padel' ?

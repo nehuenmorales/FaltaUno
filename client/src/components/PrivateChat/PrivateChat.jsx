@@ -14,7 +14,7 @@ import { GrSend } from "react-icons/gr"
 import paperPlane from "../../assets/icons/paper-plane-solid.svg";
 import { FiSend, FiHome, FiArrowLeft } from "react-icons/fi";
 
-const socket = io("https://falta-uno-1.herokuapp.com", { autoConnect: false });
+const socket = io("http://localhost:3001", { autoConnect: false });
 
 
 
@@ -182,25 +182,25 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
     <div className={s.containerAllChat}>
       <div className={s.colum}>
         <button className={s.backToHome} onClick={(e) => backToHome(e)}>
-        <FiArrowLeft /> Volver al inicio </button>
+          <FiArrowLeft /> Volver al inicio </button>
         <div>
           <SearchUser usersConnected={usersConnected} setUserSeach={setUserSeach} />
         </div>
 
         {userSearch.length ? userSearch.map((user) => {
           return <Card className={styles.cardContainer} onClick={(e) => selectOnClick(e, user.username)}>
-          <div className={styles.avatarContainer}>
-            <img className={styles.avatar} src={user.image} />
-          </div>
-          <div className={styles.information}>
-            <span>{user.name}</span>
-            {user.hasNewMessages ? <p className={s.icon}><i class="fa-solid fa-message"></i></p> : null}
-            <FiSend className={styles.iconSend} size={23} color='#00B83F' />
-          </div>
-        </Card>
+            <div className={styles.avatarContainer}>
+              <img className={styles.avatar} src={user.image} />
+            </div>
+            <div className={styles.information}>
+              <span>{user.name}</span>
+              {user.hasNewMessages ? <p className={s.icon}><i class="fa-solid fa-message"></i></p> : null}
+              <FiSend className={styles.iconSend} size={23} color='#00B83F' />
+            </div>
+          </Card>
         })
           : usersConnected.length ? usersConnected.map((user) => {
-            if(email === user.username) return;
+            if (email === user.username) return;
             return <Card className={styles.cardContainer} onClick={(e) => selectOnClick(e, user.username)}>
               <div className={styles.avatarContainer}>
                 <img className={styles.avatar} src={user.image} />

@@ -38,20 +38,20 @@ export default function SuppliesPadel() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
-        .then((res) => {
-            setComplexName(res.data)
-        })  
-    },[])
+        axios.get('http://localhost:3001/owner/getNameComplex')
+            .then((res) => {
+                setComplexName(res.data)
+            })
+    }, [])
 
     const validator = (supplies) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
         const beNumber = /(^\d{1,10}$)/;
         if (!supplies.complexId) {
             validations.complexId = "Ingrese el complejo al que pertenece la cancha"
-          } else if (!complexName.includes(supplies.complexId)) {
+        } else if (!complexName.includes(supplies.complexId)) {
             validations.complexId = `${supplies.complexId} no existe`
-          } else if (!supplies.name) {
+        } else if (!supplies.name) {
             validations.name = "Ingrese el nombre del producto"
         } else if (supplies.name.length > 30) {
             validations.name = "Superó el máximo de caracteres"
@@ -108,17 +108,17 @@ export default function SuppliesPadel() {
         data.append("file", file);
         data.append("upload_preset", 'sdujndiw');
         setLoading(true);
-        const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
+        const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
             { method: "POST", body: data })
         const data1 = await response.json()
         setNewSupplie({
-          ...newSupplie,
-          image: data1.url,
-      });
-      let errors = validator({ ...newSupplie, image: file });
-      setErrors(errors);
-      setLoading(false)
-      };
+            ...newSupplie,
+            image: data1.url,
+        });
+        let errors = validator({ ...newSupplie, image: file });
+        setErrors(errors);
+        setLoading(false)
+    };
 
     return (
 
@@ -133,78 +133,78 @@ export default function SuppliesPadel() {
             </div>
 
             <form onSubmit={(e) => handleSubmit(e)} encType='multipart/form-data' >
-                
-                    <div className={s.inputsandcard}>
-                        <div className={s.izquierda}>
-                             {/* NOMBRE DEL COMPLEJO */}
-              <div className={s.input}>
-                <h5 className={s.titles}>Nombre del complejo</h5>
-                <input
-                  type="text"
-                  name="complexId"
-                  className={s.inputfield}
-                  value={newSupplie.complexId}
-                  onChange={(e) => handleInputChange(e)}
-                />
-                {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
-              </div>
-                    <div >
-                        <h5 className={s.titles}>Nombre del elemento</h5>
-                        <input
-                            className={s.inputfield}
-                            type="text"
-                            name="name"
-                            onChange={(e) => handleInputChange(e)} />
-                        {errors.name ? <div className={s.error}>{errors.name}</div> : null}
-                    </div>
 
-                    <div >
-                        <h5 className={s.titles}>Stock del elemento</h5>
-                        <input
-                            className={s.inputfield}
-                            type="text"
-                            name="stock"
-                            onChange={(e) => handleInputChange(e)} />
-                        {errors.stock ? <div className={s.error}>{errors.stock}</div> : null}
-                    </div>
-
-                    <div className={s.precio}>
-                        <h5 className={s.titles}>Precio del elemento</h5>
-                        <InputGroup className={s.inputprecio}>
-                            <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
-                            <input type="text"
+                <div className={s.inputsandcard}>
+                    <div className={s.izquierda}>
+                        {/* NOMBRE DEL COMPLEJO */}
+                        <div className={s.input}>
+                            <h5 className={s.titles}>Nombre del complejo</h5>
+                            <input
+                                type="text"
+                                name="complexId"
                                 className={s.inputfield}
-                                id={s.precioinput}
-                                name="price"
+                                value={newSupplie.complexId}
                                 onChange={(e) => handleInputChange(e)}
                             />
-                        </InputGroup>
-                        {errors.price ? <div className={s.error}>{errors.price}</div> : null}
-                    </div>
+                            {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
+                        </div>
+                        <div >
+                            <h5 className={s.titles}>Nombre del elemento</h5>
+                            <input
+                                className={s.inputfield}
+                                type="text"
+                                name="name"
+                                onChange={(e) => handleInputChange(e)} />
+                            {errors.name ? <div className={s.error}>{errors.name}</div> : null}
+                        </div>
 
-                    <div className={s.image}>
-                        <h5 className={s.titles}>Foto del elemento</h5>
-                        <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
-                        {loading ? <span class={s.loader}></span> : null}
-                    </div>
+                        <div >
+                            <h5 className={s.titles}>Stock del elemento</h5>
+                            <input
+                                className={s.inputfield}
+                                type="text"
+                                name="stock"
+                                onChange={(e) => handleInputChange(e)} />
+                            {errors.stock ? <div className={s.error}>{errors.stock}</div> : null}
+                        </div>
+
+                        <div className={s.precio}>
+                            <h5 className={s.titles}>Precio del elemento</h5>
+                            <InputGroup className={s.inputprecio}>
+                                <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
+                                <input type="text"
+                                    className={s.inputfield}
+                                    id={s.precioinput}
+                                    name="price"
+                                    onChange={(e) => handleInputChange(e)}
+                                />
+                            </InputGroup>
+                            {errors.price ? <div className={s.error}>{errors.price}</div> : null}
+                        </div>
+
+                        <div className={s.image}>
+                            <h5 className={s.titles}>Foto del elemento</h5>
+                            <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
+                            {loading ? <span class={s.loader}></span> : null}
+                        </div>
                     </div>
                     <div className={s.derecha}>
-                    <CardSupplie newSupplie={newSupplie} />
+                        <CardSupplie newSupplie={newSupplie} />
                     </div>
-                    </div>
-                    <div className={s.boton}>
-                        {
-                            !loading &&
+                </div>
+                <div className={s.boton}>
+                    {
+                        !loading &&
                             !errors.complexId &&
-                                !errors.name &&
-                                !errors.stock &&
-                                !errors.price ?
-                                <button className={s.btnVerde} type="submit" 
-                                >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Crear</button>
-                        }
+                            !errors.name &&
+                            !errors.stock &&
+                            !errors.price ?
+                            <button className={s.btnVerde} type="submit"
+                            >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Crear</button>
+                    }
 
-                    </div>
-                
+                </div>
+
             </form>
         </div>
 

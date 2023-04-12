@@ -11,7 +11,7 @@ export default function FieldList() {
     const [field, setField] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldByOwner/${owner.id}`)
+        axios.get(`http://localhost:3001/owner/getFieldByOwner/${owner.id}`)
             .then(res => setField(res.data))
     }, [])
 

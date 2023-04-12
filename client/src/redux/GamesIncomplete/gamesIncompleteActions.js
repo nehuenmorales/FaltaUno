@@ -9,66 +9,66 @@ export const ORDER_GAMES_INCOMPLETE = "ORDER_GAMES_INCOMPLETE";
 
 
 export function getGamesIncomplete() {
-    return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/games/gamesIncomplete`)   
-        .then(res => {
-          dispatch({
-            type: GET_GAMES_INCOMPLETE,
-            payload: res.data
-          })
+  return dispatch => {
+    axios.get(`http://localhost:3001/games/gamesIncomplete`)
+      .then(res => {
+        dispatch({
+          type: GET_GAMES_INCOMPLETE,
+          payload: res.data
         })
-        .catch(e=>
-          console.log(e)
-        )
-              
-    }
-  }
-  
-  export function getDetailIncomplete(gameid) {
-    
-    return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/games/gamesIncomplete/${gameid}`)
-        .then(res => {
-          dispatch({
-            type: GET_DETAIL_INCOMPLETE,
-            payload: res.data
-          })
-        })
-        .catch (e=>
-          console.log(e)
-        ) 
-    }
-  }
-  export function getSearchGamesIncomplete(input,sport) {
-    return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGameIncomplete?name=${input}`)   
-        .then(res => {
-          dispatch({
-            type: GET_SEARCH_GAMES_INCOMPLETE,
-            payload: res.data,
-            
-          })
-        })
-        .catch(e=>
-          console.log(e)
-        )
-              
-    }
-  }
+      })
+      .catch(e =>
+        console.log(e)
+      )
 
-  export function putGame(id, email) {
-    return async function (dispatch) {
-      const {data} = await axios.put(
-        `https://falta-uno-1.herokuapp.com/games/gamesIncomplete/${id}`,
-        email
-      );
-      dispatch({type: PUT_GAME, payload: data});
-    };
   }
+}
 
-  export function gamesIncompleteOrderByAmount (order){
-    return {
-     type: ORDER_GAMES_INCOMPLETE,
-     payload: order
-};
+export function getDetailIncomplete(gameid) {
+
+  return dispatch => {
+    axios.get(`http://localhost:3001/games/gamesIncomplete/${gameid}`)
+      .then(res => {
+        dispatch({
+          type: GET_DETAIL_INCOMPLETE,
+          payload: res.data
+        })
+      })
+      .catch(e =>
+        console.log(e)
+      )
+  }
+}
+export function getSearchGamesIncomplete(input, sport) {
+  return dispatch => {
+    axios.get(`http://localhost:3001/games/${sport}/searchGameIncomplete?name=${input}`)
+      .then(res => {
+        dispatch({
+          type: GET_SEARCH_GAMES_INCOMPLETE,
+          payload: res.data,
+
+        })
+      })
+      .catch(e =>
+        console.log(e)
+      )
+
+  }
+}
+
+export function putGame(id, email) {
+  return async function (dispatch) {
+    const { data } = await axios.put(
+      `http://localhost:3001/games/gamesIncomplete/${id}`,
+      email
+    );
+    dispatch({ type: PUT_GAME, payload: data });
+  };
+}
+
+export function gamesIncompleteOrderByAmount(order) {
+  return {
+    type: ORDER_GAMES_INCOMPLETE,
+    payload: order
+  };
 }

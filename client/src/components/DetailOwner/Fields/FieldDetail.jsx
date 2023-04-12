@@ -138,7 +138,7 @@ export default function FieldDetail({ id }) {
         ev.preventDefault()
         dispatch(modifyField(time, id))
 
-        const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${field.id}`)
+        const res = await axios.delete(`http://localhost:3001/owner/deleteGames/${field.id}`)
 
         setShowModal(true)
 
