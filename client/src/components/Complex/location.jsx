@@ -17,13 +17,15 @@ import {
 import "@reach/combobox/styles.css";
 import './location.css'
 
-Geocode.setApiKey("AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE");
+const googleAPiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+
+Geocode.setApiKey(googleAPiKey);
 Geocode.enableDebug();
 
 
 export default function Location({ selected, setSelected, centerState, setCenterState, location, setLocation }) {
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE",
+        googleMapsApiKey: googleAPiKey,
         libraries: ["places"],
     });
 

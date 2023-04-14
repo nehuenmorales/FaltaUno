@@ -15,6 +15,8 @@ import { Spinner } from 'react-bootstrap';
   with love ♥ by leito :)
 */
 
+const googleAPiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+
 const Map = ({
   zoom = 10,
   isDragable = false,
@@ -26,7 +28,7 @@ const Map = ({
 }) => {
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE",
+    googleMapsApiKey: googleAPiKey,
   });
 
   return (
