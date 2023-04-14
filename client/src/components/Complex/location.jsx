@@ -17,24 +17,24 @@ import {
 import "@reach/combobox/styles.css";
 import './location.css'
 
-Geocode.setApiKey("AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po");
+Geocode.setApiKey("AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE");
 Geocode.enableDebug();
 
 
-export default function Location({ selected, setSelected, centerState, setCenterState, location, setLocation}) {
+export default function Location({ selected, setSelected, centerState, setCenterState, location, setLocation }) {
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po",
+        googleMapsApiKey: "AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE",
         libraries: ["places"],
     });
 
     if (!isLoaded) return <div>Loading...</div>;
-    return <Map selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation}/>;
+    return <Map selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation} />;
 }
 
-function Map({ selected, setSelected, centerState, setCenterState, location, setLocation}) {
+function Map({ selected, setSelected, centerState, setCenterState, location, setLocation }) {
     // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
     // const [ latLng, setLatLng ] = useState({ lat: 43.45, lng: -80.49 })
-    
+
 
 
 
@@ -94,28 +94,28 @@ function Map({ selected, setSelected, centerState, setCenterState, location, set
     return (
         <>
             <div className="places-container">
-                <PlacesAutocomplete  setCenterState={setCenterState} setSelected={setSelected} />
+                <PlacesAutocomplete setCenterState={setCenterState} setSelected={setSelected} />
             </div>
             <div>
-            <GoogleMap
-                zoom={10}
-                center={centerState}
-                mapContainerClassName="map-container"
-                
-            >
-                {selected &&
-                    <Marker
-                        draggable={true}
-                        onDragEnd={onMarkerDragEnd}
-                        position={centerState}
-                    />
-                }
-            </GoogleMap>
+                <GoogleMap
+                    zoom={10}
+                    center={centerState}
+                    mapContainerClassName="map-container"
+
+                >
+                    {selected &&
+                        <Marker
+                            draggable={true}
+                            onDragEnd={onMarkerDragEnd}
+                            position={centerState}
+                        />
+                    }
+                </GoogleMap>
             </div>
-            <div className="fw-normal text-white fst-italic m-3" style={{margin: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className="fw-normal text-white fst-italic m-3" style={{ margin: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {/* Latitud: {location.lat},<br/>
                 Longitud: {location.lng},<br/> */}
-                Dirección: {location.address},<br/>
+                Dirección: {location.address}<br />
             </div>
         </>
     );

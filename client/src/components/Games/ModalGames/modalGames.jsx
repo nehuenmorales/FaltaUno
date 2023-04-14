@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, Stack, Divider} from "@chakra-ui/react";
+import { Radio, RadioGroup, Stack, Divider } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
@@ -126,11 +126,11 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
     return (
 
-        <div>
+        <div style={{ color: "black" }}>
             <Modal show={showModal} onHide={handleCloseData} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header>
                     <Modal.Title>
-                        <h1 style={{fontSize:"25px"}}>Personaliza tu reserva</h1>
+                        <h1 style={{ fontSize: "25px", color: "black" }}>Personaliza tu reserva</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -138,12 +138,12 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                         {
                             sport === "tenis" || sport === "padel" ?
                                 <div className="form-group">
-                                    <label>Elegi tu forma de juego</label>
+                                    <label style={{ color: "black" }}>Elegi tu forma de juego</label>
                                     <select onChange={e => HandleUpdate(e)} className="form-select" name="type">
-                                        <option hidden>Elige</option>
+                                        <option style={{ color: "black" }} hidden>Elige</option>
                                         {sports?.map((e) => {
                                             return (
-                                                <option key={e.id} value={e}>{e}</option>
+                                                <option style={{ color: "black" }} key={e.id} value={e}>{e}</option>
                                             )
                                         })}
                                     </select>
@@ -152,17 +152,17 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                         }
                         <p>{errorsValue.type}</p>
                         <div className="form-group d-flex flex-column">
-                            <p style={{fontSize:"20px",marginBottom:"10px"}}>¿Como queres que sea tu partido?</p>
-                            <div style={{marginBottom:"10px"}}>
+                            <p style={{ fontSize: "20px", marginBottom: "10px", color: "black" }}>¿Como queres que sea tu partido?</p>
+                            <div style={{ marginBottom: "10px" }}>
                                 <RadioGroup>
-                                <Stack spacing={5} direction='row'>
-                                    <Radio colorScheme='green' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio"> 
-                                    Privado
-                                    </Radio>
-                                    <Radio colorScheme='green' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio">
-                                    Publico
-                                    </Radio>
-                                </Stack>
+                                    <Stack spacing={5} direction='row'>
+                                        <Radio style={{ color: "black" }} colorScheme='black' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio">
+                                            <p style={{ color: "black" }}>privado</p>
+                                        </Radio>
+                                        <Radio style={{ color: "black" }} colorScheme='black' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio">
+                                            <p style={{ color: "black" }}>Publico</p>
+                                        </Radio>
+                                    </Stack>
                                     <p>{errorsValue.privacy}</p>
                                 </RadioGroup>
                             </div>
@@ -171,55 +171,55 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
                         {
                             isPublic ?
-                            <textarea style={{marginBotton:"10px"}} name="requirements" onChange={e => HandleUpdate(e)} className="form-control h-100" maxLength="1000" placeholder="Escribe los requisitos para que otros jugadores puedan unirse a tu juego!"></textarea>
-                            : null
+                                <textarea style={{ marginBotton: "10px", color: "black" }} name="requirements" onChange={e => HandleUpdate(e)} className="form-control h-100" maxLength="1000" placeholder="Escribe los requisitos para que otros jugadores puedan unirse a tu juego!"></textarea>
+                                : null
                         }
 
                         <div className="form-group d-flex flex-column" >
-                            <label style={{fontSize:"20px",marginBottom:"10px",marginTop:"10px"}} >Link de la transmision</label>
+                            <label style={{ fontSize: "20px", marginBottom: "10px", marginTop: "10px", color: "black" }} >Link de la transmision</label>
                             <input name="link" onChange={e => HandleUpdate(e)} className="form-control" type="text" placeholder="Link"></input>
                         </div>
-                        
-                        {supplies.length>0?
-                        <div>
-                        <label style={{fontSize:"20px",marginBottom:"10px", marginTop:"10px"}}>Elementos para alquilar</label>
-                        <Container className="d-flex m-3 justify-content-around flex-wrap align-items-center">
-                            {
-                                supplies?.map(supplie => {
-                                    return (
-                                        <Card key={supplie.id} style={{ width: '13rem' }}>
-                                            <Card.Img variant="top" src={supplie.image} />
-                                            <Card.Body>
-                                                <Card.Title>{supplie.name}</Card.Title>
-                                                <Card.Text>
-                                                    {supplie.stock},
-                                                    ${supplie.price}
-                                                </Card.Text>
 
-                                                <Button
-                                                    onClick={() => resta(supplie)} variant="danger">-</Button>
+                        {supplies.length > 0 ?
+                            <div>
+                                <label style={{ fontSize: "20px", marginBottom: "10px", marginTop: "10px", color: "black" }}>Elementos para alquilar</label>
+                                <Container className="d-flex m-3 justify-content-around flex-wrap align-items-center">
+                                    {
+                                        supplies?.map(supplie => {
+                                            return (
+                                                <Card key={supplie.id} style={{ width: '13rem' }}>
+                                                    <Card.Img variant="top" src={supplie.image} />
+                                                    <Card.Body>
+                                                        <Card.Title>{supplie.name}</Card.Title>
+                                                        <Card.Text>
+                                                            {supplie.stock},
+                                                            ${supplie.price}
+                                                        </Card.Text>
 
-                                                <Button
-                                                    onClick={() => suma(supplie)} variant="primary">+</Button>
+                                                        <Button
+                                                            onClick={() => resta(supplie)} variant="danger">-</Button>
 
-                                            </Card.Body>
-                                        </Card>
-                                    )
-                                })
-                            }
-                        </Container>
-                        </div>
-                        :null
+                                                        <Button
+                                                            onClick={() => suma(supplie)} variant="primary">+</Button>
+
+                                                    </Card.Body>
+                                                </Card>
+                                            )
+                                        })
+                                    }
+                                </Container>
+                            </div>
+                            : null
                         }
 
-                        <p style={{fontSize:"20px", marginTop:"20px"}}>total  <b>${leitoTheBest}</b></p>
+                        <p style={{ fontSize: "20px", marginTop: "20px", color: "black" }}>total  <b>${leitoTheBest}</b></p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <button className="btn btn-secundary" onClick={handleClose}>
                         Volver
                     </button>
-                    <Button onClick={() => setPagar(true)} style={{backgroundColor:'rgba(0, 184, 62, 1)',border:"none"}}>
+                    <Button onClick={() => setPagar(true)} style={{ backgroundColor: 'rgba(0, 184, 62, 1)', border: "none" }}>
                         Siguiente
                     </Button>
                 </Modal.Footer>
@@ -227,12 +227,12 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
             <Modal show={pagar} onHide={handleCloseData}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Completa tus datos</Modal.Title>
+                    <Modal.Title style={{ color: "black" }}>Completa tus datos</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={(e) => handleSubmitMP(e)}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Nombre</Form.Label>
+                            <Form.Label style={{ color: "black" }}>Nombre</Form.Label>
                             <Form.Control
                                 name="nombre"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -242,7 +242,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Apellido</Form.Label>
+                            <Form.Label style={{ color: "black" }}>Apellido</Form.Label>
                             <Form.Control
                                 name="apellido"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -252,7 +252,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label style={{ color: "black" }}>Email</Form.Label>
                             <Form.Control
                                 name="email"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -262,7 +262,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Teléfono</Form.Label>
+                            <Form.Label style={{ color: "black" }}>Teléfono</Form.Label>
                             <Form.Control
                                 name="telefono"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -272,7 +272,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Código Postal</Form.Label>
+                            <Form.Label style={{ color: "black" }}>Código Postal</Form.Label>
                             <Form.Control
                                 name="postal"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -282,7 +282,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>D.N.I.</Form.Label>
+                            <Form.Label style={{ color: "black" }}>D.N.I.</Form.Label>
                             <Form.Control
                                 name="dni"
                                 onChange={(e) => handleChangeUserData(e)}
@@ -291,13 +291,13 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                                 autoFocus
                             />
                         </Form.Group>
-                        <div style={{display:"flex", justifyContent:"flex-end"}}>
-                        <button className="btn btn-secundary" onClick={handleCloseData}>
-                        Volver
-                        </button>
-                        <Button type="submit" style={{backgroundColor:'rgba(0, 184, 62, 1)',border:"none"}}>
-                            Ir a pagar
-                        </Button>
+                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                            <button className="btn btn-secundary" onClick={handleCloseData}>
+                                Volver
+                            </button>
+                            <Button type="submit" style={{ backgroundColor: 'rgba(0, 184, 62, 1)', border: "none" }}>
+                                Ir a pagar
+                            </Button>
                         </div>
                     </Form>
                 </Modal.Body>

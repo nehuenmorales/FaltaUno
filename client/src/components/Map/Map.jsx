@@ -26,27 +26,27 @@ const Map = ({
 }) => {
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po",
+    googleMapsApiKey: "AIzaSyATu7cxj1FMw65DpPvx_2ULeyFIFos5xOE",
   });
 
   return (
     <>
       {
-      isLoaded ?
-        <GoogleMap
-          zoom={zoom}
-          center={center}
-          mapContainerStyle={{
-            width: width,
-            height: height,
-            margin: margin,
-            borderRadius: borderRadius,
-          }}
-        >
-          <Marker draggable={isDragable} position={center} />
-        </GoogleMap>
-        : <Spinner animation="grow" variant="light" />
-        }
+        isLoaded ?
+          <GoogleMap
+            zoom={zoom}
+            center={center}
+            mapContainerStyle={{
+              width: width,
+              height: height,
+              margin: margin,
+              borderRadius: borderRadius,
+            }}
+          >
+            <Marker draggable={isDragable} position={center} />
+          </GoogleMap>
+          : <Spinner animation="grow" variant="light" />
+      }
     </>
   );
 }

@@ -97,6 +97,7 @@ export default function CreateComplex() {
         setNewComplex({ ...newComplex, address: location.address, lat: location.lat, lng: location.lng, country: dividir[dividir.length - 1], state: dividir[dividir.length - 2] })
         let errors = validator({ ...newComplex, address: location.address });
         setErrors(errors);
+        console.log("esta es la locacion", location)
     }, [location.address])
 
     const validator = (complex) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
@@ -365,7 +366,8 @@ export default function CreateComplex() {
                                     !errors.address &&
                                     !errors.state &&
                                     !errors.sports &&
-                                    !errors.image ?
+                                    !errors.image
+                                    ?
                                     <button type="submit" className='botonActivo'
                                     >Crear</button> : <button type="submit" className='btnGris' disabled >Crear</button>
                             }
